@@ -1,14 +1,11 @@
-# test-js
+# Goose
 
-A Quil sketch designed to ... well, that part is up to you.
+A bit of silly quil hacking at the early July London Clojure Dojo at uSwitch.
 
 ## Usage
 
-FIXME
+Fire up lein cljsbuild
 
 ## License
 
-Copyright © 2014 FIXME
-
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Public Domain thx to the London Clojurians.
