@@ -7,6 +7,7 @@
 
 (defn draw []
   (let [[r g b] @bkgrnd-colour]
+    (println "circle-1" @circle-1)
     (q/background r g b)
     (q/fill b g r)
     (apply q/ellipse @circle-1)
@@ -15,15 +16,16 @@
 
 (defn key-press []
   (let [[r g b] @bkgrnd-colour
+        [x y w h] @circle-1
         circle-1-size (rand-int 800)
         circle-2-size 500
         key-pressed (q/key-as-keyword)]
     (println key-pressed)
     (reset! bkgrnd-colour [g b r])
-    (reset! circle-1 [(rand-int 1800)
-                      (rand-int 900)
-                      circle-1-size
-                      circle-1-size])
+    ;; (reset! circle-1 [(rand-int 1800)
+    ;;                   (rand-int 900)
+    ;;                   circle-1-size
+    ;;                   circle-1-size])
     (reset! circle-2 [(rand-int 1800)
                       (rand-int 900)
                       (cond
@@ -33,8 +35,16 @@
                        (= key-pressed :h) (* circle-2-size 4)
                        :else circle-2-size)])))
 
+(defn mouse-move []
+  (let [mx (q/mouse-x)
+        my (q/mouse-y)
+        [x y w h] @circle-1]
+    (println "x: " mx "y: " my)
+    (reset! circle-1 [mx my w h])))
+
 (q/defsketch ldnclj-goose-201407
 	:draw draw
 	:host "ldnclj-goose-201407"
 	:size [1920 1080]
-        :key-pressed key-press)
+        :key-pressed key-press
+        :mouse-moved mouse-move)
